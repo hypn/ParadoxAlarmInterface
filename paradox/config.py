@@ -315,6 +315,8 @@ class Config(object):
         if conf_extension in [".conf", ".py"]:
             with open(self.CONFIG_FILE_LOCATION) as f:
                 exec(f.read(), None, entries)
+                if '__annotations__' in entries:
+                  entries = entries['__annotations__']
         elif conf_extension in [".json"]:
             import json
 
